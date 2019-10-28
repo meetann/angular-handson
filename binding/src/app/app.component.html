@@ -1,7 +1,8 @@
 <div style="text-align:center">
   <h1>
-    From App Component.
+    From App Component. <br>
+    {{message}}
   </h1>
 </div>
 
-<app-test></app-test>
+<app-test (childEvent)="message=$event" [parentData]="nameFromParent"></app-test>

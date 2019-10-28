@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'binding';
+  public nameFromParent = "Ananya";
+  public message="";
 }

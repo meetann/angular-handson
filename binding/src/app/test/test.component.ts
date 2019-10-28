@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -67,6 +67,13 @@ import { Component, OnInit } from '@angular/core';
               <div *ngSwitchDefault> Pick again </div>
              </div>
 
+             <div *ngFor="let color of colors; index as i">
+              <h2>{{i}} {{color}}</h2>
+            </div>
+
+            <h2>{{"Hello "+ nameFromParent+ " from parent componenet"}}</h2>
+
+            <button (click)="fireEvent()">Send Event</button>
 
              `,
   styles: [`
@@ -106,9 +113,10 @@ export class TestComponent implements OnInit {
   public twoWayBindName ="";
   public displayName =false;
   public color = "blue";
-
-
-
+  public colors = ["red","blue","green","yellow"];
+  // @Input() public parentData;
+  @Input('parentData') public nameFromParent;
+  @Output() public childEvent = new EventEmitter();
 
   // onClick(){
   //   // console.log("Welcome. you clicked the button!");
@@ -123,6 +131,10 @@ export class TestComponent implements OnInit {
 
   logMessage(value){
     console.log(value);
+  }
+
+  fireEvent(){
+    this.childEvent.emit("Hey from child");
   }
 
   constructor() { }
